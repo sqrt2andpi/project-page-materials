@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Anonymous project page for R2S-EGO, a dual-proxy approach to sparse-capture real-to-sim refinement.">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#fcfbf8">
+  <meta property="og:title" content="R2S-EGO: Dual-Proxy Refinement for Sparse-Capture Real-to-Sim">
+  <meta property="og:description" content="Behavior-scoped robot queries and capture-anchored structural conditioning for sparse-capture real-to-sim.">
+  <meta property="og:type" content="website">
+  <title>R2S-EGO | Anonymous Project Page</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <nav class="site-nav page-width" aria-label="Primary navigation">
+      <a class="site-name" href="#top">R2S-EGO</a>
+      <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#robot">Real Robot</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="paper-hero" id="top" aria-labelledby="paper-title">
+      <div class="hero-title page-width">
+        <h1 id="paper-title">R2S-EGO: Dual-Proxy Refinement for Sparse-Capture Real-to-Sim</h1>
+        <p class="authors">Anonymous Authors</p>
+        <div class="resource-links" aria-label="Project resources">
+          <a class="resource-button" href="assets/r2s-ego-paper.pdf" target="_blank" rel="noopener">Paper <span aria-hidden="true">↗</span></a>
+          <a class="resource-button" href="#overview">Video <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <div class="hero-video-wrap">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto"
+               poster="assets/sim-real-poster.webp" data-autoplay-video data-hero-video
+               aria-label="Synchronized simulation and real Unitree G1 sitting rollout">
+          <source src="videos/sim-real-sitting.mp4" type="video/mp4">
+        </video>
+        <div class="hero-video-shade" aria-hidden="true"></div>
+        <p class="hero-video-caption">
+          <span class="wide-caption">Synchronized simulation (left) and real Unitree G1 (right) under the sitting protocol.</span>
+          <span class="mobile-caption">Real Unitree G1 sitting rollout (synchronized simulation shown on wide screens).</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="overview page-width" id="overview" aria-labelledby="overview-title">
+      <div class="text-width abstract">
+        <h2 id="overview-title">Abstract</h2>
+        <p>
+          Sparse real-to-sim captures often leave a reconstructed simulator under-supported at
+          the egocentric views a robot actually visits. R2S-EGO refines such scenes with two
+          complementary proxies: a behavior-scoped robot proxy defines executable mounted-camera
+          queries and prioritizes current visual deficits, while a capture-anchored geometry proxy
+          supplies view-aligned structural conditions. Their shared poses guide generation of
+          registered ego observations that are added at lower weight during scene refinement. We
+          evaluate the resulting appearance at frozen Unitree G1-mounted views in controlled Replica
+          scenes and study transfer under one real-G1 sitting protocol.
+        </p>
+      </div>
+
+      <figure class="teaser">
+        <video controls playsinline preload="metadata" poster="assets/overview-poster.webp">
+          <source src="videos/r2s-ego-overview.mp4" type="video/mp4">
+          Your browser does not support HTML video.
+        </video>
+        <figcaption>
+          <strong>Overview video.</strong> Silent; narration is deferred to the attached-video revision.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="paper-section page-width" id="method" aria-labelledby="method-title">
+      <h2 id="method-title">Method</h2>
+      <figure class="paper-figure">
+        <img src="assets/figures/pipeline.webp"
+             alt="R2S-EGO pipeline showing real-to-sim generation, robot and geometry proxies, ego-view video, scene refinement, and policy evaluation."
+             width="2013" height="669">
+        <figcaption>
+          <strong>Figure 1. R2S-EGO pipeline.</strong> Simulator states define mounted-camera poses;
+          fixed-budget selection prioritizes current deficits with usable structural conditions;
+          joint generation combines reference appearance with shared-pose structure; registered
+          observations then refine the reusable simulation scene at lower weight.
+        </figcaption>
+      </figure>
+
+      <div class="method-pair">
+        <div class="method-notes">
+          <p>
+            <strong>Behavior-scoped robot proxy.</strong> Simulator rollouts and mounted-camera
+            kinematics define the executable query domain. Within it, fixed-budget selection
+            prioritizes current visual deficits for which usable structural conditions exist.
+          </p>
+          <p>
+            <strong>Capture-anchored geometry proxy.</strong> Real capture fragments anchor aligned
+            shape priors and residual reconstruction. Rendering this proxy supplies view-aligned
+            layout, visibility, depth order, and occlusion for ego-view generation. Prior-completed
+            surfaces remain structural hypotheses rather than verified scene truth.
+          </p>
+        </div>
+
+        <figure class="paper-figure compact-figure">
+          <img src="assets/figures/geometry-correspondence.webp"
+               alt="Two RGB views paired with geometry-proxy renderings; shared colors indicate qualitative object associations."
+               width="1947" height="561">
+          <figcaption>
+            <strong>Figure 2. RGB–geometry-proxy correspondence.</strong> Shared colors show
+            qualitative object associations for two views.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="paper-section page-width" id="results" aria-labelledby="results-title">
+      <h2 id="results-title">Results</h2>
+      <div class="results-figures">
+        <figure class="paper-figure qualitative-figure">
+          <img src="assets/figures/qualitative-comparison.webp"
+               alt="Same-camera qualitative comparison across ground truth, Vanilla 3DGS, GaussGym, Difix3D+, and R2S-EGO in three Replica scenes."
+               width="1959" height="885">
+          <figcaption>
+            <strong>Figure 3. Same-camera qualitative comparison.</strong> Identical frozen
+            camera poses; red boxes mark the same scene region across methods.
+          </figcaption>
+        </figure>
+
+        <figure class="paper-figure plot-figure">
+          <img src="assets/figures/input-count-sweep.webp"
+               alt="Discrete input-count sweep at 6, 10, 15, 30, and 45 real views in office_2 with a fixed six-view initializer."
+               width="1030" height="731">
+          <figcaption><strong>Figure 4. Input-count sweep.</strong> <code>office_2</code> with a fixed six-view initializer.</figcaption>
+        </figure>
+      </div>
+
+      <div class="results-tables">
+        <div class="table-block">
+          <p class="table-caption"><strong>Table 1. Frozen ego-view appearance.</strong> Six registered inputs per scene; 48 frozen G1-mounted views across three controlled Replica scenes.</p>
+          <div class="table-scroll" tabindex="0" aria-label="Scrollable quantitative results table">
+            <table>
+              <thead><tr><th>Method</th><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS-Alex ↓</th></tr></thead>
+              <tbody>
+                <tr><td>Vanilla 3DGS</td><td>13.239</td><td>0.549</td><td>0.593</td></tr>
+                <tr><td>GenFusion</td><td>14.012</td><td>0.481</td><td>0.571</td></tr>
+                <tr><td>Difix3D+</td><td>14.059</td><td>0.461</td><td>0.552</td></tr>
+                <tr><td>GaussGym</td><td>14.226</td><td>0.567</td><td>0.628</td></tr>
+                <tr class="best-row"><td>R2S-EGO</td><td>19.062</td><td>0.757</td><td>0.273</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="table-block">
+          <p class="table-caption"><strong>Table 2. Component ablation.</strong> Aggregate means over five paired seeds and 48 views.</p>
+          <div class="table-scroll" tabindex="0" aria-label="Scrollable component ablation table">
+            <table>
+              <thead><tr><th>Variant</th><th>PSNR ↑</th><th>SSIM ↑</th><th>LPIPS-Alex ↓</th></tr></thead>
+              <tbody>
+                <tr><td>w/o ego video (initial asset)</td><td>13.417</td><td>0.552</td><td>0.588</td></tr>
+                <tr><td>w/o robot-proxy allocation</td><td>16.182</td><td>0.661</td><td>0.406</td></tr>
+                <tr><td>w/o SAM 3D grounding</td><td>16.384</td><td>0.671</td><td>0.412</td></tr>
+                <tr><td>w/o iterative refinement</td><td>17.508</td><td>0.706</td><td>0.334</td></tr>
+                <tr class="best-row"><td>Full R2S-EGO</td><td>19.062</td><td>0.757</td><td>0.273</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <details class="scope-details text-width">
+        <summary>Metric scope &amp; protocol notes</summary>
+        <div>
+          <p><strong>Robot and geometry proxies.</strong> The robot proxy is not a learned-policy occupancy model or arbitrary camera interpolation. Prior-completed geometry is not scene truth; no independent geometry or collision-accuracy metric is reported.</p>
+          <p><strong>Figure 2.</strong> The correspondence annotations are not generator inputs and do not provide an independent geometry-accuracy metric.</p>
+          <p><strong>Table 1.</strong> R2S-EGO is the mean over five pre-specified pipeline seeds; other methods are fixed runs. These full-reference metrics use Replica-rendered inputs and ground truth, not physical-scene image quality, and do not establish statistical significance or per-scene consistency.</p>
+          <p><strong>Figure 4.</strong> This controlled-initialization PSNR sweep covers <code>office_2</code>, 16 cameras, five discrete input counts, and a fixed six-view initializer; it is not an end-to-end dense-recapture, total-compute, universal capture-saving, or geometry-equivalence comparison.</p>
+          <p><strong>Table 2.</strong> Aggregate means only. The allocation ablation changes executable candidate construction and deficit ranking together, so it supports the coupled procedure rather than either effect alone.</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="paper-section page-width" id="robot" aria-labelledby="robot-title">
+      <h2 id="robot-title">Real-Robot Evaluation</h2>
+      <div class="robot-score text-width" aria-label="Descriptive real-robot sitting counts">
+        <span><strong>33/40</strong> R2S-EGO</span>
+        <span class="score-separator" aria-hidden="true">vs.</span>
+        <span><strong>4/40</strong> GaussGym</span>
+      </div>
+
+      <div class="video-gallery" aria-label="Representative real-G1 sitting videos">
+        <figure class="trial-video">
+          <video muted loop controls playsinline preload="metadata" poster="assets/trial-a-poster.webp" data-autoplay-video><source src="videos/real-g1-trial-a.mp4" type="video/mp4"></video>
+          <figcaption><strong>Trial A</strong></figcaption>
+        </figure>
+        <figure class="trial-video">
+          <video muted loop controls playsinline preload="metadata" poster="assets/trial-b-poster.webp" data-autoplay-video><source src="videos/real-g1-trial-b.mp4" type="video/mp4"></video>
+          <figcaption><strong>Trial B</strong></figcaption>
+        </figure>
+        <figure class="trial-video">
+          <video muted loop controls playsinline preload="metadata" poster="assets/trial-c-poster.webp" data-autoplay-video><source src="videos/real-g1-trial-c.mp4" type="video/mp4"></video>
+          <figcaption><strong>Trial C</strong></figcaption>
+        </figure>
+        <figure class="trial-video">
+          <video muted loop controls playsinline preload="metadata" poster="assets/trial-d-poster.webp" data-autoplay-video><source src="videos/real-g1-trial-d.mp4" type="video/mp4"></video>
+          <figcaption><strong>Trial D</strong></figcaption>
+        </figure>
+      </div>
+
+      <p class="gallery-caption text-width">Representative real-G1 executions; Trial B is the safety-guarded condition. Clips are trimmed to motion onset and shown at real speed with equal 11.5 s durations. The same method ordering holds for all five policy seeds. Success requires at least 3 s of stable chair support; the tether remains slack and non-load-bearing.</p>
+
+      <details class="scope-details text-width">
+        <summary>Evidence scope &amp; anonymization notes</summary>
+        <div>
+          <p>Five independently trained policies per visual asset were evaluated on a Unitree G1 under one controlled sitting protocol. Aggregate trial counts are descriptive because trials nest within policies.</p>
+          <p>The robot proxy covers fixed-controller sitting queries, not learned-policy occupancy. The counts show association under five policies per condition and one sitting protocol—not statistical significance, causal diagnosis, or cross-chair / cross-behavior generalization.</p>
+          <p>These clips are representative examples rather than a per-trial manifest. Audio was removed, and the operator face visible in Trial B was obscured for anonymous review.</p>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-width">
+      <a href="assets/r2s-ego-paper.pdf" target="_blank" rel="noopener">Paper PDF ↗</a>
+      <span>Anonymous project page for double-blind review.</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <noscript><div class="noscript">JavaScript is optional; videos remain available through their native controls.</div></noscript>
+</body>
+</html>
