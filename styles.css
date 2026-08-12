@@ -249,7 +249,6 @@ tbody tr + tr { border-top: 1px solid var(--line); }
 .scope-details summary { padding: 13px 2px; color: #3f484c; cursor: pointer; font-size: 0.9rem; font-weight: 650; }
 .scope-details > div { padding: 0 2px 12px; }
 .scope-details p { margin: 0 0 10px; color: var(--muted); font-size: 0.82rem; line-height: 1.55; }
-
 .site-footer { padding: 28px 0; border-top: 1px solid var(--line); }
 .site-footer .page-width {
   display: flex;
