@@ -65,9 +65,12 @@
     const revealInner = comparison.querySelector('[data-reveal-inner]');
     const gaussImage = comparison.querySelector('[data-gauss-image]');
     const r2sImage = comparison.querySelector('[data-r2s-image]');
-    const sceneButtons = comparison.querySelectorAll('[data-gauss][data-r2s]');
+    const sceneButtons = comparison.querySelectorAll('[data-appearance-scene]');
+    const viewButtons = comparison.querySelectorAll('[data-appearance-view]');
     const sweepButton = comparison.querySelector('[data-sweep]');
     let sweepFrame = 0;
+    let activeScene = 'room_0';
+    let activeView = 'ego_01';
 
     const resizeReveal = () => { revealInner.style.width = `${stage.clientWidth}px`; };
     const setSplit = (value) => {
@@ -90,13 +93,25 @@
       setSplit(range.value);
     });
 
-    sceneButtons.forEach((button) => button.addEventListener('click', () => {
+    const showSelection = () => {
       stopSweep();
-      sceneButtons.forEach((item) => item.classList.toggle('is-active', item === button));
-      gaussImage.src = button.dataset.gauss;
-      r2sImage.src = button.dataset.r2s;
-      r2sImage.alt = `R2S-EGO rendering from ${button.dataset.scene}, ${button.dataset.view.replace('_', ' camera ')}`;
+      const stem = `assets/appearance-slider/visual_15deg_${activeScene}_${activeView}`;
+      gaussImage.src = `${stem}_gaussgym.png`;
+      r2sImage.src = `${stem}_r2s_ego.png`;
+      r2sImage.alt = `R2S-EGO rendering from ${activeScene.replace('_', ' ')}, 15-degree ${activeView.replace('_', ' camera ')}`;
       setSplit(50);
+    };
+
+    sceneButtons.forEach((button) => button.addEventListener('click', () => {
+      activeScene = button.dataset.appearanceScene;
+      sceneButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+      showSelection();
+    }));
+
+    viewButtons.forEach((button) => button.addEventListener('click', () => {
+      activeView = button.dataset.appearanceView;
+      viewButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+      showSelection();
     }));
 
     sweepButton.addEventListener('click', () => {

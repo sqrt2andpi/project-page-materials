@@ -11,8 +11,8 @@
   <meta property="og:type" content="website">
   <title>R2S-EGO | Anonymous Project Page</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles-hero-v5.css?v=9">
-  <script src="script-seek-v2.js?v=4" defer></script>
+  <link rel="stylesheet" href="styles-hero-v5.css?v=10">
+  <script src="script-seek-v2.js?v=5" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -211,17 +211,17 @@
 
     <section class="paper-section page-width appearance-comparison" id="appearance-comparison" aria-labelledby="appearance-title">
       <h2 id="appearance-title">Interactive Visual Comparison</h2>
-      <p class="appearance-lede text-width">Drag the divider to compare both methods from the same frozen G1-mounted camera.</p>
+      <p class="appearance-lede text-width">Choose a scene and camera, then drag the divider to compare.</p>
 
       <figure class="appearance-figure" data-appearance-comparison>
         <div class="appearance-stage" style="--split: 50%">
           <img class="appearance-base" data-r2s-image
-               src="assets/appearance-slider/visual_room_0_ego_07_r2s_ego.png"
-               alt="R2S-EGO rendering from room 0, ego camera 07">
+               src="assets/appearance-slider/visual_15deg_room_0_ego_01_r2s_ego.png"
+               alt="R2S-EGO rendering from room 0, 15-degree ego camera 01">
           <div class="appearance-reveal" aria-hidden="true">
             <div class="appearance-reveal-inner" data-reveal-inner>
               <img data-gauss-image
-                   src="assets/appearance-slider/visual_room_0_ego_07_gaussgym.png"
+                   src="assets/appearance-slider/visual_15deg_room_0_ego_01_gaussgym.png"
                    alt="">
             </div>
           </div>
@@ -234,23 +234,27 @@
         </div>
 
         <div class="appearance-toolbar">
-          <div class="appearance-contexts" role="group" aria-label="Choose comparison view">
-            <button class="is-active" type="button" data-scene="room_0" data-view="ego_07"
-                    data-gauss="assets/appearance-slider/visual_room_0_ego_07_gaussgym.png"
-                    data-r2s="assets/appearance-slider/visual_room_0_ego_07_r2s_ego.png">room_0 · ego_07</button>
-            <button type="button" data-scene="office_2" data-view="ego_03"
-                    data-gauss="assets/appearance-slider/visual_office_2_ego_03_gaussgym.png"
-                    data-r2s="assets/appearance-slider/visual_office_2_ego_03_r2s_ego.png">office_2 · ego_03</button>
-            <button type="button" data-scene="office_3" data-view="ego_04"
-                    data-gauss="assets/appearance-slider/visual_office_3_ego_04_gaussgym.png"
-                    data-r2s="assets/appearance-slider/visual_office_3_ego_04_r2s_ego.png">office_3 · ego_04</button>
+          <div class="appearance-selectors">
+            <div class="appearance-selector-row">
+              <span>Scene</span>
+              <div class="appearance-contexts" role="group" aria-label="Choose scene">
+                <button class="is-active" type="button" data-appearance-scene="room_0">room_0</button>
+                <button type="button" data-appearance-scene="office_2">office_2</button>
+                <button type="button" data-appearance-scene="office_3">office_3</button>
+              </div>
+            </div>
+            <div class="appearance-selector-row">
+              <span>15° view</span>
+              <div class="appearance-contexts" role="group" aria-label="Choose 15-degree ego camera">
+                <button class="is-active" type="button" data-appearance-view="ego_01">ego_01</button>
+                <button type="button" data-appearance-view="ego_02">ego_02</button>
+                <button type="button" data-appearance-view="ego_03">ego_03</button>
+                <button type="button" data-appearance-view="ego_05">ego_05</button>
+              </div>
+            </div>
           </div>
           <button class="appearance-sweep" type="button" data-sweep>Play sweep</button>
         </div>
-
-        <figcaption>
-          <strong>Interactive same-camera comparison.</strong> Switch scenes and drag the divider. Each camera is selected by raw GaussGym PSNR from eight routine views, then held fixed for both methods; the displayed GaussGym image includes DiFix3D post-processing.
-        </figcaption>
       </figure>
     </section>
 
