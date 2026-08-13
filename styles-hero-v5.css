@@ -319,6 +319,99 @@ tbody tr + tr { border-top: 1px solid var(--line); }
 .scope-details summary { padding: 14px 2px; color: #3f484c; cursor: pointer; font-size: 0.9rem; font-weight: 650; }
 .scope-details > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; padding: 2px 2px 14px; }
 .scope-details p { margin: 0 0 12px; color: var(--muted); font-size: 0.84rem; line-height: 1.58; }
+
+.appearance-lede { margin: -8px auto 26px; color: var(--muted); font-size: .94rem; text-align: center; }
+.appearance-figure { margin: 0; }
+.appearance-stage {
+  --split: 50%;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #cfd8d8;
+  border-radius: 12px;
+  background: #edf2f1;
+  box-shadow: 0 12px 38px rgba(21, 43, 44, .10);
+  cursor: ew-resize;
+  isolation: isolate;
+  touch-action: none;
+  user-select: none;
+}
+.appearance-stage img { pointer-events: none; }
+.appearance-base { width: 100%; height: auto; }
+.appearance-reveal { position: absolute; z-index: 2; inset: 0 auto 0 0; width: var(--split); overflow: hidden; }
+.appearance-reveal-inner { height: 100%; }
+.appearance-reveal img { width: 100%; height: 100%; object-fit: fill; }
+.appearance-label {
+  position: absolute;
+  z-index: 4;
+  top: 14px;
+  padding: 6px 11px;
+  color: #fff;
+  background: rgba(13, 22, 26, .76);
+  border-radius: 6px;
+  font-size: .72rem;
+  font-weight: 760;
+  letter-spacing: .02em;
+  pointer-events: none;
+}
+.appearance-label-left { left: 14px; border-left: 4px solid #526a9d; }
+.appearance-label-right { right: 14px; border-right: 4px solid #079781; }
+.appearance-divider {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  bottom: 0;
+  left: var(--split);
+  width: 3px;
+  transform: translateX(-1.5px);
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(17, 32, 42, .12), 0 0 12px rgba(0, 0, 0, .38);
+  pointer-events: none;
+}
+.appearance-divider span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  color: var(--ink);
+  background: rgba(255, 255, 255, .96);
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 13px rgba(0, 0, 0, .32);
+  font-size: 1.05rem;
+  font-weight: 850;
+}
+.appearance-range { position: absolute; z-index: 10; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+.appearance-focus { position: absolute; z-index: 9; inset: 0; border-radius: inherit; pointer-events: none; }
+.appearance-range:focus-visible + .appearance-focus { box-shadow: inset 0 0 0 4px rgba(8, 108, 104, .45); }
+.appearance-toolbar { margin-top: 14px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.appearance-contexts { display: flex; flex-wrap: wrap; gap: 8px; }
+.appearance-contexts button,
+.appearance-sweep {
+  min-height: 35px;
+  padding: 7px 12px;
+  color: #48565a;
+  background: #fff;
+  border: 1px solid #cad4d3;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  font-size: .72rem;
+  font-weight: 700;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+.appearance-contexts button:hover,
+.appearance-contexts button:focus-visible,
+.appearance-sweep:hover,
+.appearance-sweep:focus-visible { border-color: #839b99; transform: translateY(-1px); }
+.appearance-contexts button.is-active { color: #fff; background: var(--teal-dark); border-color: var(--teal-dark); }
+.appearance-sweep { flex: 0 0 auto; color: var(--teal-dark); }
+.appearance-figure figcaption { margin-top: 12px; color: var(--muted); font-size: .84rem; line-height: 1.55; }
+
 .site-footer { padding: 28px 0; border-top: 1px solid var(--line); }
 .site-footer .page-width {
   display: flex;
@@ -353,6 +446,12 @@ tbody tr + tr { border-top: 1px solid var(--line); }
   .robot-score { gap: 14px; }
   .robot-score strong { display: block; margin: 0 0 5px; }
   .video-gallery { grid-template-columns: 1fr; }
+  .appearance-toolbar { align-items: stretch; flex-direction: column; }
+  .appearance-sweep { align-self: flex-start; }
+  .appearance-label { top: 8px; font-size: .62rem; }
+  .appearance-label-left { left: 8px; }
+  .appearance-label-right { right: 8px; }
+  .appearance-divider span { width: 38px; height: 38px; }
   .site-footer .page-width { align-items: flex-start; flex-direction: column; gap: 8px; }
 }
 

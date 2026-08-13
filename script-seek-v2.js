@@ -59,6 +59,69 @@
     });
   });
 
+  document.querySelectorAll('[data-appearance-comparison]').forEach((comparison) => {
+    const stage = comparison.querySelector('.appearance-stage');
+    const range = comparison.querySelector('.appearance-range');
+    const revealInner = comparison.querySelector('[data-reveal-inner]');
+    const gaussImage = comparison.querySelector('[data-gauss-image]');
+    const r2sImage = comparison.querySelector('[data-r2s-image]');
+    const sceneButtons = comparison.querySelectorAll('[data-gauss][data-r2s]');
+    const sweepButton = comparison.querySelector('[data-sweep]');
+    let sweepFrame = 0;
+
+    const resizeReveal = () => { revealInner.style.width = `${stage.clientWidth}px`; };
+    const setSplit = (value) => {
+      const split = Math.max(0, Math.min(100, Number(value)));
+      range.value = String(split);
+      stage.style.setProperty('--split', `${split}%`);
+    };
+    const stopSweep = () => {
+      if (sweepFrame) cancelAnimationFrame(sweepFrame);
+      sweepFrame = 0;
+      sweepButton.textContent = 'Play sweep';
+    };
+
+    resizeReveal();
+    if ('ResizeObserver' in window) new ResizeObserver(resizeReveal).observe(stage);
+    else window.addEventListener('resize', resizeReveal, { passive: true });
+
+    range.addEventListener('input', () => {
+      stopSweep();
+      setSplit(range.value);
+    });
+
+    sceneButtons.forEach((button) => button.addEventListener('click', () => {
+      stopSweep();
+      sceneButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+      gaussImage.src = button.dataset.gauss;
+      r2sImage.src = button.dataset.r2s;
+      r2sImage.alt = `R2S-EGO rendering from ${button.dataset.scene}, ${button.dataset.view.replace('_', ' camera ')}`;
+      setSplit(50);
+    }));
+
+    sweepButton.addEventListener('click', () => {
+      if (sweepFrame) {
+        stopSweep();
+        return;
+      }
+      sweepButton.textContent = 'Stop sweep';
+      const started = performance.now();
+      const duration = 4200;
+      const animate = (now) => {
+        const elapsed = now - started;
+        const phase = Math.min(1, elapsed / duration);
+        setSplit(50 + 42 * Math.sin(phase * Math.PI * 2 - Math.PI / 2));
+        if (phase < 1) sweepFrame = requestAnimationFrame(animate);
+        else {
+          sweepFrame = 0;
+          setSplit(50);
+          sweepButton.textContent = 'Play sweep';
+        }
+      };
+      sweepFrame = requestAnimationFrame(animate);
+    });
+  });
+
   if ('IntersectionObserver' in window) {
     const videoObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
