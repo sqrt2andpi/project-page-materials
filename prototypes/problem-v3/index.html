@@ -48,7 +48,9 @@ header p{margin:0;color:var(--muted);font-size:.8rem}
 .capture-label{left:27%;color:var(--blue)}
 .ego-label{right:3%;color:var(--rust)}
 .gap-band{position:absolute;z-index:28;left:24%;top:7%;width:54%;height:25%;opacity:0;animation:finalGap 15s infinite;pointer-events:none}
-.gap-band b{position:absolute;left:50%;top:0;transform:translateX(-50%);padding:7px 15px;border:1px solid #b25f3f55;border-radius:5px;background:#fffffff0;color:var(--rust);font-size:1.7rem;line-height:1;letter-spacing:.055em;white-space:nowrap;box-shadow:0 6px 18px #3f241b20}
+.gap-band b{position:absolute;left:50%;top:-3px;transform:translateX(-50%);display:flex;align-items:baseline;gap:11px;padding:8px 18px 11px;border:1px solid #b25f3f55;border-radius:6px;background:linear-gradient(180deg,#fff,#f8ece8);color:var(--rust);white-space:nowrap;box-shadow:0 8px 22px #3f241b28,inset 0 1px #fff}
+.gap-band b span{font:820 .78rem/1 Inter,system-ui,sans-serif;letter-spacing:.11em}
+.gap-band b em{color:#bd6046;font:italic 900 2.6rem/.78 Georgia,"Times New Roman",serif;letter-spacing:-.06em;text-shadow:0 1px 0 #f7ad94,1px 2px 0 #8f3f2e,2px 3px 0 #823728,3px 4px 0 #742f23,4px 5px 0 #64271e,6px 8px 10px #4d211d55}
 .gap-curve{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 5px #14222d30)}
 .gap-curve .arc-main{fill:none;stroke:url(#gap-gradient);stroke-width:9;stroke-linecap:round}
 .gap-curve .arc-ghost{fill:none;stroke:#fff;stroke-width:3;stroke-dasharray:9 8;opacity:.9}
@@ -159,7 +161,10 @@ header p{margin:0;color:var(--muted);font-size:.8rem}
 <span class="ego-badge b1">1</span><span class="ego-badge b2">2</span><span class="ego-badge b3">3</span></div>
 <div class="column-label capture-label">HUMAN CAPTURE · RGB</div>
 <div class="column-label ego-label">ROBOT EGO-VIEW</div>
-<div class="gap-band" aria-label="Single left-to-right curved arrow visualizing the capture-consumption support gap"><b>CAPTURE–CONSUMPTION GAP</b><svg class="gap-curve" viewBox="0 0 700 190" aria-hidden="true"><defs><linearGradient id="gap-gradient" x1="0" x2="1"><stop offset="0" stop-color="#2f6fae"/><stop offset=".48" stop-color="#2f6fae"/><stop offset=".52" stop-color="#b25f3f"/><stop offset="1" stop-color="#b25f3f"/></linearGradient></defs><path class="arc-main" d="M30 120 C205 54 485 54 650 111"/><path class="arc-ghost" d="M32 120 C205 54 485 54 648 111"/><path class="arrow-right" d="M640 91 L682 125 L632 137 Z"/><circle class="gap-ring" cx="350" cy="75" r="31"/><path class="bolt" d="M357 37 L330 77 L348 77 L339 113 L371 66 L353 66 Z"/><text class="capture-end" x="88" y="163">HUMAN CAPTURES</text><text class="ego-end" x="606" y="163">ROBOT EGO VIEWS</text></svg></div>
+
+<div class="gap-band" aria-label="Single left-to-right curved arrow visualizing the capture-consumption support gap">
+<b><span>CAPTURE–CONSUMPTION</span><em>GAP</em></b>
+<svg class="gap-curve" viewBox="0 0 700 190" aria-hidden="true"><defs><linearGradient id="gap-gradient" x1="0" x2="1"><stop offset="0" stop-color="#2f6fae"/><stop offset=".48" stop-color="#2f6fae"/><stop offset=".52" stop-color="#b25f3f"/><stop offset="1" stop-color="#b25f3f"/></linearGradient></defs><path class="arc-main" d="M30 120 C205 54 485 54 650 111"/><path class="arc-ghost" d="M32 120 C205 54 485 54 648 111"/><path class="arrow-right" d="M640 91 L682 125 L632 137 Z"/><circle class="gap-ring" cx="350" cy="75" r="31"/><path class="bolt" d="M357 37 L330 77 L348 77 L339 113 L371 66 L353 66 Z"/><text class="capture-end" x="88" y="163">HUMAN CAPTURES</text><text class="ego-end" x="606" y="163">ROBOT EGO VIEWS</text></svg></div>
 </section>
 <div class="controls"><button id="restart">Restart</button><button id="pause">Pause</button><span class="note">Review prototype only · formal Overview remains unchanged</span></div></main><script>const s=document.querySelector('#stage');restart.onclick=()=>{s.style.display='none';s.offsetHeight;s.style.display='block'}
 ;pause.onclick=e=>{const p=s.classList.toggle('paused');s.querySelectorAll('*').forEach(x=>x.style.animationPlayState=p?'paused':'running');e.target.textContent=p?'Play':'Pause'}
