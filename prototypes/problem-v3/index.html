@@ -24,27 +24,36 @@ header p{margin:0;color:var(--muted);font-size:.8rem}
 .p2{top:25%;left:18%;animation:p2 15s infinite}
 .p3{top:50%;left:1%;animation:p3 15s infinite}
 .p4{top:67%;left:22%;animation:p4 15s infinite}
-.frustum{position:absolute;z-index:15;width:112px;height:76px;background:linear-gradient(120deg,#b25f3f75,#b25f3f09);clip-path:polygon(0 42%,100% 0,100% 100%,0 58%);opacity:0;transform-origin:left center;animation:frusta 15s infinite}
-.frustum:after{content:"HEAD CAMERA · DOWNWARD";position:absolute;left:26px;top:27px;width:130px;color:#74321d;font-size:8px;font-weight:850;letter-spacing:.04em}
-.f1{left:47%;top:47%;transform:rotate(35deg)}
-.f2{left:57%;top:55%;transform:rotate(48deg)}
-.f3{left:68%;top:66%;transform:rotate(60deg)}
+.camera-map{position:absolute;z-index:21;inset:0;width:100%;height:100%;pointer-events:none}
+.camera-map .pair{opacity:0}
+.camera-map .pair-1{animation:pair1 15s infinite}.camera-map .pair-2{animation:pair2 15s infinite}.camera-map .pair-3{animation:pair3 15s infinite}
+.camera-map .ray{fill:none;stroke:#b25f3f;stroke-width:3;stroke-dasharray:8 6;opacity:.78}
+.camera-map .cone{fill:#b25f3f26;stroke:#b25f3f;stroke-width:2}
+.camera-map .head-ring{fill:#fff;stroke:#b25f3f;stroke-width:6;filter:drop-shadow(0 3px 5px #52200f66)}
+.camera-map .lens{fill:#17334d;stroke:#fff;stroke-width:2}
+.camera-map .badge{fill:#b25f3f;stroke:#fff;stroke-width:3}
+.camera-map text{fill:#fff;font:800 15px Inter,system-ui,sans-serif;text-anchor:middle;dominant-baseline:central}
+.camera-map .camera-label{fill:#74321d;font-size:12px;text-anchor:start;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
 .ego{position:absolute;z-index:22;right:2%;width:23%;aspect-ratio:4/3;object-fit:cover;border:5px solid white;box-shadow:0 9px 24px #13243140;opacity:0}
 .e1{top:10%;animation:e1 15s infinite}
 .e2{top:39%;animation:e2 15s infinite}
 .e3{top:68%;animation:e3 15s infinite}
+.ego-badge{position:absolute;z-index:24;right:23.2%;width:28px;height:28px;display:grid;place-items:center;border:3px solid #fff;border-radius:50%;color:#fff;background:var(--rust);font-size:.72rem;font-weight:850;opacity:0}
+.b1{top:12%;animation:e1 15s infinite}.b2{top:41%;animation:e2 15s infinite}.b3{top:70%;animation:e3 15s infinite}
 .copy{position:absolute;z-index:25;left:4%;bottom:4%;padding:10px 13px;background:#fffffff0;border-left:4px solid var(--blue);animation:copy 15s infinite}
 .copy b{display:block;font-size:clamp(1.1rem,2.3vw,1.8rem)}
 .copy span{color:var(--muted)}
-.gap{left:auto;right:3%;border-left-color:var(--rust);opacity:0;animation:gap 15s infinite}
 .column-label{position:absolute;z-index:27;top:6%;padding:5px 8px;background:#fffffff0;border-radius:4px;font-size:.64rem;font-weight:850;letter-spacing:.07em;opacity:0;animation:finalGap 15s infinite}
 .capture-label{left:27%;color:var(--blue)}
 .ego-label{right:3%;color:var(--rust)}
-.gap-band{position:absolute;z-index:26;left:56%;top:23%;width:13%;height:55%;opacity:0;animation:finalGap 15s infinite}
-.gap-band:before,.gap-band:after{content:"";position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue) 0 37%,transparent 37% 63%,var(--rust) 63% 100%)}
-.gap-band:before{top:27%}.gap-band:after{top:72%}
-.gap-band b{position:absolute;left:50%;top:50%;width:210px;transform:translate(-50%,-50%) rotate(-90deg);color:var(--rust);font-size:.72rem;letter-spacing:.1em;text-align:center}
-.gap-band i{position:absolute;left:43%;top:45%;width:14%;height:10%;border-left:2px solid var(--rust);border-right:2px solid var(--rust);transform:skew(-14deg)}
+.gap-band{position:absolute;z-index:28;left:48%;top:27%;width:25%;height:28%;padding:10px 13px 8px;border:1px solid #b25f3f55;border-radius:7px;background:#fffffff2;box-shadow:0 12px 30px #3f241b25;opacity:0;animation:finalGap 15s infinite}
+.gap-band b{display:block;color:var(--rust);font-size:.68rem;letter-spacing:.09em;text-align:center}
+.gap-bridge{display:block;width:100%;height:72%;margin-top:4px;overflow:visible}
+.gap-bridge .deck-left{fill:var(--blue)}.gap-bridge .deck-right{fill:var(--rust)}
+.gap-bridge .support{fill:none;stroke:#68757c;stroke-width:4;stroke-linecap:round}
+.gap-bridge .break{fill:#b25f3f;stroke:#fff;stroke-width:2}
+.gap-bridge .flow{fill:none;stroke:#fff;stroke-width:3;stroke-dasharray:8 5}
+.gap-bridge text{fill:#68757c;font:800 10px Inter,system-ui,sans-serif;letter-spacing:.05em;text-anchor:middle}
 .controls{display:flex;gap:8px;margin-top:11px}
 .controls button{padding:7px 11px;background:#fff;border:1px solid #bac5ca;border-radius:6px;cursor:pointer}
 .note{margin-left:auto;color:var(--muted);font-size:.78rem}
@@ -88,6 +97,9 @@ header p{margin:0;color:var(--muted);font-size:.8rem}
 65%,91%{opacity:1}
 97%,100%{opacity:0}
 }
+@keyframes pair1{0%,65%{opacity:0}69%,91%{opacity:1}97%,100%{opacity:0}}
+@keyframes pair2{0%,70%{opacity:0}74%,91%{opacity:1}97%,100%{opacity:0}}
+@keyframes pair3{0%,75%{opacity:0}79%,91%{opacity:1}97%,100%{opacity:0}}
 @keyframes e1{0%,65%{opacity:0;transform:translateX(18px)}
 69%,91%{opacity:1;transform:none}
 97%,100%{opacity:0}
@@ -103,10 +115,6 @@ header p{margin:0;color:var(--muted);font-size:.8rem}
 @keyframes copy{0%,4%{opacity:0}
 8%,48%{opacity:1}
 53%,100%{opacity:0}
-}
-@keyframes gap{0%,78%{opacity:0}
-82%,94%{opacity:1}
-98%,100%{opacity:0}
 }
 @keyframes finalGap{0%,80%{opacity:0;transform:scale(.97)}84%,94%{opacity:1;transform:none}98%,100%{opacity:0}}
 @media(max-width:650px){header{display:block}
@@ -134,19 +142,22 @@ header p{margin:0;color:var(--muted);font-size:.8rem}
 
 <img class="photo p4" src="assets/rgb_658.png"></div>
 <div class="copy"><b>A person captures a few views</b><span>One calibrated camera · sparse RGB observations</span></div>
-<i class="frustum f1"></i>
-<i class="frustum f2"></i>
-<i class="frustum f3"></i>
+<svg class="camera-map" viewBox="0 0 1200 675" aria-label="Three G1 head cameras connected to their corresponding downward ego views">
+  <g class="pair pair-1"><path class="ray" d="M428 261 C610 250 760 175 918 165"/><path class="cone" d="M428 261 L520 283 L483 344 Z"/><circle class="head-ring" cx="428" cy="261" r="15"/><circle class="lens" cx="428" cy="261" r="7"/><circle class="badge" cx="451" cy="244" r="13"/><text x="451" y="244">1</text><text class="camera-label" x="405" y="222">G1 HEAD CAMERA</text></g>
+  <g class="pair pair-2"><path class="ray" d="M560 422 C690 420 805 375 918 365"/><path class="cone" d="M560 422 L650 449 L605 516 Z"/><circle class="head-ring" cx="560" cy="422" r="15"/><circle class="lens" cx="560" cy="422" r="7"/><circle class="badge" cx="583" cy="405" r="13"/><text x="583" y="405">2</text></g>
+  <g class="pair pair-3"><path class="ray" d="M677 452 C760 485 835 545 918 560"/><path class="cone" d="M677 452 L770 493 L712 555 Z"/><circle class="head-ring" cx="677" cy="452" r="15"/><circle class="lens" cx="677" cy="452" r="7"/><circle class="badge" cx="700" cy="435" r="13"/><text x="700" y="435">3</text></g>
+</svg>
 
-<img class="ego e1" src="assets/ego-g1-center.png" alt="Downward-looking G1 head-camera view at the center state">
+<img class="ego e1" src="assets/ego-g1-seated.png" alt="Downward-looking G1 head-camera view at the seated state">
 
 <img class="ego e2" src="assets/ego-g1-front.png" alt="Downward-looking G1 head-camera view at the front state">
 
-<img class="ego e3" src="assets/ego-g1-seated.png" alt="Downward-looking G1 head-camera view at the seated state">
+<img class="ego e3" src="assets/ego-g1-center.png" alt="Downward-looking G1 head-camera view at the center state">
+<span class="ego-badge b1">1</span><span class="ego-badge b2">2</span><span class="ego-badge b3">3</span>
 <div class="column-label capture-label">HUMAN CAPTURE · RGB</div>
 <div class="column-label ego-label">ROBOT EGO-VIEW · DOWNWARD</div>
-<div class="gap-band" aria-label="Capture-consumption support gap"><b>CAPTURE–CONSUMPTION GAP</b><i></i></div>
-<div class="copy gap"><b>Robots consume different views</b><span>Different positions, poses, viewpoints, visible surfaces, and occlusions</span></div></section>
+<div class="gap-band" aria-label="Broken bridge visualizing the capture-consumption support gap"><b>CAPTURE–CONSUMPTION GAP</b><svg class="gap-bridge" viewBox="0 0 260 90" aria-hidden="true"><path class="support" d="M18 70 L48 39 M242 70 L212 39"/><path class="deck-left" d="M5 30 H112 L126 44 L111 54 H5 Z"/><path class="deck-right" d="M255 30 H148 L135 47 L151 54 H255 Z"/><path class="flow" d="M20 40 H99 M240 40 H161"/><path class="break" d="M124 42 L136 49 L127 58 L141 63 L131 78 L118 64 L123 54 L113 49 Z"/><circle class="break" cx="142" cy="71" r="4"/><circle class="break" cx="116" cy="76" r="3"/><text x="58" y="86">CAPTURE</text><text x="204" y="86">EGO VIEW</text></svg></div>
+</section>
 <div class="controls"><button id="restart">Restart</button><button id="pause">Pause</button><span class="note">Review prototype only · formal Overview remains unchanged</span></div></main><script>const s=document.querySelector('#stage');restart.onclick=()=>{s.style.display='none';s.offsetHeight;s.style.display='block'}
 ;pause.onclick=e=>{const p=s.classList.toggle('paused');s.querySelectorAll('*').forEach(x=>x.style.animationPlayState=p?'paused':'running');e.target.textContent=p?'Play':'Pause'}
 ;</script></body></html>
