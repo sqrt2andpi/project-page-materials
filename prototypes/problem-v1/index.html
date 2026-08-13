@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>V1 Problem Storyboard · R2S-EGO</title>
+  <style>
+    :root{--ink:#080d10;--paper:#f4f7f6;--teal:#086c68;--rust:#a55238;--muted:#626b70}
+    *{box-sizing:border-box}body{margin:0;background:#e8ebe8;color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,sans-serif}
+    main{width:min(1100px,calc(100% - 32px));margin:28px auto 56px}header{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:14px}
+    h1{margin:0;font-size:1.25rem}header p{margin:0;color:var(--muted);font-size:.82rem}.stage{position:relative;overflow:hidden;aspect-ratio:16/9;background:var(--paper);border:1px solid #cbd1ce;border-radius:10px;box-shadow:0 18px 50px #33403b20}
+    .scene{position:absolute;inset:0}.room{position:absolute;left:24%;top:24%;width:52%;height:52%;border:2px solid #9aa5a1;background:linear-gradient(135deg,#dfe4e1,#cbd3cf);transform:perspective(650px) rotateX(58deg) rotateZ(-9deg);box-shadow:inset 0 0 0 18px #eef1ef}
+    .object{position:absolute;background:#899591}.sofa{left:43%;top:46%;width:20%;height:12%;border-radius:6px;transform:rotate(-9deg)}.table{left:34%;top:37%;width:10%;height:10%;border-radius:50%}.camera{position:absolute;width:18px;height:18px;border:2px solid var(--teal);transform:rotate(45deg);opacity:0;animation:cam 8.5s infinite}.camera:after{content:"";position:absolute;left:13px;top:13px;width:42px;height:1px;background:var(--teal);transform-origin:left center;transform:rotate(-45deg)}
+    .c1{left:22%;top:20%;animation-delay:.1s}.c2{left:36%;top:13%;animation-delay:.25s}.c3{left:58%;top:14%;animation-delay:.4s}.c4{left:75%;top:27%;animation-delay:.55s}.c5{left:69%;top:69%;animation-delay:.7s}.c6{left:30%;top:72%;animation-delay:.85s}
+    .ego{position:absolute;left:48%;top:75%;width:30px;height:30px;border:3px solid var(--rust);transform:rotate(45deg);opacity:0;animation:ego 8.5s infinite}.ego:after{content:"";position:absolute;left:22px;top:21px;width:130px;height:2px;background:var(--rust);transform-origin:left;transform:rotate(-63deg)}
+    .gap{position:absolute;left:49%;top:48%;width:20%;height:18%;border:2px dashed var(--rust);border-radius:50%;opacity:0;animation:gap 8.5s infinite}.artifact{position:absolute;left:53%;top:47%;width:14%;height:14%;opacity:0;background:repeating-linear-gradient(104deg,#873f3155 0 6px,transparent 6px 13px);filter:blur(1px);animation:gap 8.5s infinite}
+    .label{position:absolute;left:5%;bottom:7%;opacity:0}.label b{display:block;font-size:clamp(1.45rem,3vw,2.6rem);letter-spacing:-.04em}.label span{color:var(--muted)}.capture{animation:capture 8.5s infinite}.visited{animation:visited 8.5s infinite}.coverage{animation:coverage 8.5s infinite}
+    .handoff{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;opacity:0;animation:handoff 8.5s infinite}.proxy{display:grid;place-items:center;font-weight:700;letter-spacing:.04em}.proxy:first-child{color:var(--teal);background:#e4efed}.proxy:last-child{color:var(--rust);background:#f2e8e3}.phase{position:absolute;right:20px;top:18px;padding:6px 10px;border-radius:99px;background:#ffffffd9;color:var(--rust);font-size:.72rem;font-weight:800;letter-spacing:.1em}
+    .controls{display:flex;align-items:center;gap:8px;margin-top:12px}.controls button{border:1px solid #bbc4c0;background:#fff;padding:7px 11px;border-radius:6px;cursor:pointer}.note{margin-left:auto;color:var(--muted);font-size:.78rem}
+    @keyframes cam{0%,2%{opacity:0;transform:scale(.5) rotate(45deg)}8%,63%{opacity:1;transform:scale(1) rotate(45deg)}70%,100%{opacity:.18}}
+    @keyframes ego{0%,31%{opacity:0;transform:translateY(35px) rotate(45deg)}39%,68%{opacity:1;transform:translateY(0) rotate(45deg)}73%,100%{opacity:0}}
+    @keyframes gap{0%,43%{opacity:0}52%,72%{opacity:1}80%,100%{opacity:0}}
+    @keyframes capture{0%,4%{opacity:0;transform:translateY(8px)}8%,30%{opacity:1;transform:none}35%,100%{opacity:0}}
+    @keyframes visited{0%,31%{opacity:0}38%,64%{opacity:1}69%,100%{opacity:0}}
+    @keyframes coverage{0%,58%{opacity:0}64%,79%{opacity:1}84%,100%{opacity:0}}
+    @keyframes handoff{0%,80%{opacity:0;transform:translateY(12px)}88%,96%{opacity:1;transform:none}100%{opacity:0}}
+    @media(max-width:650px){header{display:block}.note{display:none}.stage{border-radius:6px}}
+  </style>
+</head>
+<body>
+<main>
+  <header><div><h1>V1 · Problem — visual storyboard</h1><p>Concept prototype only. It does not modify the formal overview video.</p></div><p>8.5 s · auto-loop · no narration</p></header>
+  <section class="stage" id="stage" aria-label="Animated problem storyboard">
+    <div class="scene"><div class="room"></div><div class="object sofa"></div><div class="object table"></div><i class="camera c1"></i><i class="camera c2"></i><i class="camera c3"></i><i class="camera c4"></i><i class="camera c5"></i><i class="camera c6"></i><i class="ego"></i><i class="gap"></i><i class="artifact"></i></div>
+    <div class="label capture"><b>Sparse capture</b><span>observes a limited set of views</span></div>
+    <div class="label visited"><b>The robot looks elsewhere</b><span>an executable ego view enters an under-supported region</span></div>
+    <div class="label coverage"><b>Capture ≠ ego coverage</b><span>the gap motivates targeted refinement</span></div>
+    <div class="handoff"><div class="proxy">BEHAVIOR-SCOPED<br>ROBOT PROXY</div><div class="proxy">CAPTURE-ANCHORED<br>GEOMETRY PROXY</div></div>
+    <div class="phase">01 · PROBLEM</div>
+  </section>
+  <div class="controls"><button id="restart">Restart animation</button><button id="pause">Pause</button><span class="note">Teal = captured views · Rust = robot-visited ego view / missing support</span></div>
+</main>
+<script>
+const stage=document.querySelector('#stage');document.querySelector('#restart').onclick=()=>{stage.style.display='none';stage.offsetHeight;stage.style.display='block'};document.querySelector('#pause').onclick=e=>{const paused=stage.classList.toggle('paused');stage.querySelectorAll('*').forEach(x=>x.style.animationPlayState=paused?'paused':'running');e.target.textContent=paused?'Play':'Pause'};
+</script>
+</body></html>

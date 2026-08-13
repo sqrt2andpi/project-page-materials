@@ -134,8 +134,17 @@ code { font-size: 0.92em; }
 .resource-button:hover,
 .resource-button:focus-visible { background: var(--teal-dark); }
 
-.hero-video-wrap { position: absolute; inset: 0; overflow: hidden; background: #05090b; }
-.hero-video { width: 100%; height: 100%; object-fit: contain; object-position: center; background: #05090b; }
+.hero-video-wrap { position: absolute; inset: 0; overflow: hidden; background: #17201f; }
+.hero-video-backdrop {
+  position: absolute;
+  inset: -24px;
+  width: calc(100% + 48px);
+  height: calc(100% + 48px);
+  object-fit: cover;
+  filter: blur(22px) saturate(.72) brightness(.62);
+  transform: scale(1.035);
+}
+.hero-video { position: relative; width: 100%; height: 100%; object-fit: contain; object-position: center; background: transparent; }
 .hero-video-shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(5,9,11,.64) 0%, rgba(5,9,11,.32) 48%, rgba(5,9,11,.68) 100%); }
 .hero-video-caption { position: absolute; left: max(24px, calc((100vw - 960px) / 2)); bottom: 18px; margin: 0; color: #d8dedd; font-size: 0.78rem; }
 .mobile-caption { display: none; }
