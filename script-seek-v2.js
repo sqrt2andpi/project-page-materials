@@ -71,6 +71,29 @@
     let sweepFrame = 0;
     let activeScene = 'room_0';
     let activeView = 'ego_01';
+    let selectionVersion = 0;
+    const cachedImages = new Map();
+
+    const preloadImage = (src) => {
+      if (cachedImages.has(src)) return cachedImages.get(src);
+      const image = new Image();
+      const ready = new Promise((resolve) => {
+        image.onload = resolve;
+        image.onerror = resolve;
+      });
+      image.decoding = 'async';
+      image.src = src;
+      cachedImages.set(src, ready);
+      return ready;
+    };
+
+    ['room_0', 'office_2', 'office_3'].forEach((scene) => {
+      ['ego_01', 'ego_03', 'ego_05'].forEach((view) => {
+        const stem = `assets/appearance-slider/visual_15deg_${scene}_${view}`;
+        preloadImage(`${stem}_gaussgym.webp`);
+        preloadImage(`${stem}_r2s_ego.webp`);
+      });
+    });
 
     const resizeReveal = () => { revealInner.style.width = `${stage.clientWidth}px`; };
     const setSplit = (value) => {
@@ -93,11 +116,16 @@
       setSplit(range.value);
     });
 
-    const showSelection = () => {
+    const showSelection = async () => {
       stopSweep();
+      const version = ++selectionVersion;
       const stem = `assets/appearance-slider/visual_15deg_${activeScene}_${activeView}`;
-      gaussImage.src = `${stem}_gaussgym.png`;
-      r2sImage.src = `${stem}_r2s_ego.png`;
+      const gaussSrc = `${stem}_gaussgym.webp`;
+      const r2sSrc = `${stem}_r2s_ego.webp`;
+      await Promise.all([preloadImage(gaussSrc), preloadImage(r2sSrc)]);
+      if (version !== selectionVersion) return;
+      gaussImage.src = gaussSrc;
+      r2sImage.src = r2sSrc;
       r2sImage.alt = `R2S-EGO rendering from ${activeScene.replace('_', ' ')}, 15-degree ${activeView.replace('_', ' camera ')}`;
       setSplit(50);
     };
