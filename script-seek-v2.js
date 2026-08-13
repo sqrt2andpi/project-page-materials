@@ -73,6 +73,7 @@
     let activeView = 'ego_01';
     let selectionVersion = 0;
     const cachedImages = new Map();
+    const sourceView = (scene, view) => scene === 'office_3' && view === 'ego_03' ? 'ego_07' : view;
 
     const preloadImage = (src) => {
       if (cachedImages.has(src)) return cachedImages.get(src);
@@ -88,7 +89,7 @@
     };
 
     const preloadPair = (scene, view) => {
-      const stem = `assets/appearance-slider/visual_15deg_${scene}_${view}`;
+      const stem = `assets/appearance-slider/visual_15deg_${scene}_${sourceView(scene, view)}`;
       preloadImage(`${stem}_gaussgym.webp`);
       preloadImage(`${stem}_r2s_ego.webp`);
     };
@@ -117,14 +118,15 @@
     const showSelection = async () => {
       stopSweep();
       const version = ++selectionVersion;
-      const stem = `assets/appearance-slider/visual_15deg_${activeScene}_${activeView}`;
+      const stem = `assets/appearance-slider/visual_15deg_${activeScene}_${sourceView(activeScene, activeView)}`;
       const gaussSrc = `${stem}_gaussgym.webp`;
       const r2sSrc = `${stem}_r2s_ego.webp`;
       await Promise.all([preloadImage(gaussSrc), preloadImage(r2sSrc)]);
       if (version !== selectionVersion) return;
       gaussImage.src = gaussSrc;
       r2sImage.src = r2sSrc;
-      r2sImage.alt = `R2S-EGO rendering from ${activeScene.replace('_', ' ')}, 15-degree ${activeView.replace('_', ' camera ')}`;
+      const viewLabel = comparison.querySelector(`[data-appearance-view="${activeView}"]`)?.textContent.trim();
+      r2sImage.alt = `R2S-EGO rendering from ${activeScene.replace('_', ' ')}, ego view ${viewLabel}`;
       setSplit(50);
     };
 
