@@ -306,12 +306,13 @@ tbody tr + tr { border-top: 1px solid var(--line); }
 }
 .trial-video figcaption { margin-top: 8px; }
 .gallery-caption { margin-top: 14px; color: var(--muted); font-size: 0.84rem; text-align: center; }
-.scope-details { margin-top: 32px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.scope-details { margin-top: 32px; border-top: 1px solid var(--line); }
 .scope-details summary { padding: 14px 2px; color: #3f484c; cursor: pointer; font-size: 0.9rem; font-weight: 650; }
 .scope-details > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; padding: 2px 2px 14px; }
 .scope-details p { margin: 0 0 12px; color: var(--muted); font-size: 0.84rem; line-height: 1.58; }
 
 .appearance-lede { margin: -8px auto 26px; color: var(--muted); font-size: .94rem; text-align: center; }
+.appearance-comparison { border-top: 0; }
 .appearance-figure { margin: 0; }
 .appearance-stage {
   --split: 50%;
