@@ -50,8 +50,7 @@ header p{margin:0;color:var(--muted);font-size:.8rem}
 .gap-band{position:absolute;z-index:28;left:24%;top:7%;width:54%;height:25%;opacity:0;animation:finalGap 15s infinite;pointer-events:none}
 .gap-band b{position:absolute;left:50%;top:0;transform:translateX(-50%);padding:5px 10px;border:1px solid #b25f3f55;border-radius:4px;background:#fffffff0;color:var(--rust);font-size:.68rem;letter-spacing:.1em;white-space:nowrap;box-shadow:0 6px 18px #3f241b20}
 .gap-curve{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 5px #14222d30)}
-.gap-curve .arc-left,.gap-curve .arc-right{fill:none;stroke-width:9;stroke-linecap:round}
-.gap-curve .arc-left{stroke:var(--blue)}.gap-curve .arc-right{stroke:var(--rust)}
+.gap-curve .arc-main{fill:none;stroke:url(#gap-gradient);stroke-width:9;stroke-linecap:round}
 .gap-curve .arc-ghost{fill:none;stroke:#fff;stroke-width:3;stroke-dasharray:9 8;opacity:.9}
 .gap-curve .arrow-right{fill:var(--rust)}
 .gap-curve .bolt{fill:#f1a52b;stroke:#fff;stroke-width:5;stroke-linejoin:round}
@@ -160,7 +159,7 @@ header p{margin:0;color:var(--muted);font-size:.8rem}
 <span class="ego-badge b1">1</span><span class="ego-badge b2">2</span><span class="ego-badge b3">3</span></div>
 <div class="column-label capture-label">HUMAN CAPTURE · RGB</div>
 <div class="column-label ego-label">ROBOT EGO-VIEW</div>
-<div class="gap-band" aria-label="Left-to-right broken arrow visualizing the capture-consumption support gap"><b>CAPTURE–CONSUMPTION GAP</b><svg class="gap-curve" viewBox="0 0 700 190" aria-hidden="true"><path class="arc-left" d="M30 120 C135 72 235 72 326 105"/><path class="arc-right" d="M374 105 C470 72 565 72 650 111"/><path class="arc-ghost" d="M32 120 C135 72 235 72 326 105 M374 105 C470 72 565 72 648 111"/><path class="arrow-right" d="M640 91 L682 125 L632 137 Z"/><circle class="gap-ring" cx="350" cy="105" r="31"/><path class="bolt" d="M357 67 L330 107 L348 107 L339 143 L371 96 L353 96 Z"/><text class="capture-end" x="88" y="163">HUMAN CAPTURES</text><text class="ego-end" x="606" y="163">ROBOT EGO VIEWS</text></svg></div>
+<div class="gap-band" aria-label="Single left-to-right curved arrow visualizing the capture-consumption support gap"><b>CAPTURE–CONSUMPTION GAP</b><svg class="gap-curve" viewBox="0 0 700 190" aria-hidden="true"><defs><linearGradient id="gap-gradient" x1="0" x2="1"><stop offset="0" stop-color="#2f6fae"/><stop offset=".48" stop-color="#2f6fae"/><stop offset=".52" stop-color="#b25f3f"/><stop offset="1" stop-color="#b25f3f"/></linearGradient></defs><path class="arc-main" d="M30 120 C205 54 485 54 650 111"/><path class="arc-ghost" d="M32 120 C205 54 485 54 648 111"/><path class="arrow-right" d="M640 91 L682 125 L632 137 Z"/><circle class="gap-ring" cx="350" cy="75" r="31"/><path class="bolt" d="M357 37 L330 77 L348 77 L339 113 L371 66 L353 66 Z"/><text class="capture-end" x="88" y="163">HUMAN CAPTURES</text><text class="ego-end" x="606" y="163">ROBOT EGO VIEWS</text></svg></div>
 </section>
 <div class="controls"><button id="restart">Restart</button><button id="pause">Pause</button><span class="note">Review prototype only · formal Overview remains unchanged</span></div></main><script>const s=document.querySelector('#stage');restart.onclick=()=>{s.style.display='none';s.offsetHeight;s.style.display='block'}
 ;pause.onclick=e=>{const p=s.classList.toggle('paused');s.querySelectorAll('*').forEach(x=>x.style.animationPlayState=p?'paused':'running');e.target.textContent=p?'Play':'Pause'}
