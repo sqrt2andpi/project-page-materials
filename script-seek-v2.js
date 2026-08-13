@@ -87,13 +87,11 @@
       return ready;
     };
 
-    ['room_0', 'office_2', 'office_3'].forEach((scene) => {
-      ['ego_01', 'ego_03', 'ego_05'].forEach((view) => {
-        const stem = `assets/appearance-slider/visual_15deg_${scene}_${view}`;
-        preloadImage(`${stem}_gaussgym.webp`);
-        preloadImage(`${stem}_r2s_ego.webp`);
-      });
-    });
+    const preloadPair = (scene, view) => {
+      const stem = `assets/appearance-slider/visual_15deg_${scene}_${view}`;
+      preloadImage(`${stem}_gaussgym.webp`);
+      preloadImage(`${stem}_r2s_ego.webp`);
+    };
 
     const resizeReveal = () => { revealInner.style.width = `${stage.clientWidth}px`; };
     const setSplit = (value) => {
@@ -135,12 +133,18 @@
       sceneButtons.forEach((item) => item.classList.toggle('is-active', item === button));
       showSelection();
     }));
+    sceneButtons.forEach((button) => button.addEventListener('pointerenter', () => {
+      preloadPair(button.dataset.appearanceScene, activeView);
+    }, { passive: true }));
 
     viewButtons.forEach((button) => button.addEventListener('click', () => {
       activeView = button.dataset.appearanceView;
       viewButtons.forEach((item) => item.classList.toggle('is-active', item === button));
       showSelection();
     }));
+    viewButtons.forEach((button) => button.addEventListener('pointerenter', () => {
+      preloadPair(activeScene, button.dataset.appearanceView);
+    }, { passive: true }));
 
     sweepButton.addEventListener('click', () => {
       if (sweepFrame) {
