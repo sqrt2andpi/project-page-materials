@@ -34,12 +34,13 @@ header p{margin:0;color:var(--muted);font-size:.8rem}
 .camera-map .badge{fill:#b25f3f;stroke:#fff;stroke-width:3}
 .camera-map text{fill:#fff;font:800 15px Inter,system-ui,sans-serif;text-anchor:middle;dominant-baseline:central}
 .camera-map .camera-label{fill:#74321d;font-size:12px;text-anchor:start;paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
-.ego{position:absolute;z-index:22;right:2%;width:23%;aspect-ratio:4/3;object-fit:cover;border:5px solid white;box-shadow:0 9px 24px #13243140;opacity:0}
-.e1{top:10%;animation:e1 15s infinite}
-.e2{top:39%;animation:e2 15s infinite}
-.e3{top:68%;animation:e3 15s infinite}
-.ego-badge{position:absolute;z-index:24;right:23.2%;width:28px;height:28px;display:grid;place-items:center;border:3px solid #fff;border-radius:50%;color:#fff;background:var(--rust);font-size:.72rem;font-weight:850;opacity:0}
-.b1{top:12%;animation:e1 15s infinite}.b2{top:41%;animation:e2 15s infinite}.b3{top:70%;animation:e3 15s infinite}
+.ego-photos{position:absolute;z-index:22;right:2%;top:8%;bottom:8%;width:25%}
+.ego{position:absolute;width:72%;aspect-ratio:4/3;object-fit:cover;border:5px solid white;box-shadow:0 9px 24px #13243140;opacity:0}
+.e1{top:0;right:0;animation:e1 15s infinite}
+.e2{top:30%;right:18%;animation:e2 15s infinite}
+.e3{top:60%;right:1%;animation:e3 15s infinite}
+.ego-badge{position:absolute;z-index:24;width:28px;height:28px;display:grid;place-items:center;border:3px solid #fff;border-radius:50%;color:#fff;background:var(--rust);font-size:.72rem;font-weight:850;opacity:0}
+.b1{top:2%;right:68%;animation:e1 15s infinite}.b2{top:32%;right:86%;animation:e2 15s infinite}.b3{top:62%;right:69%;animation:e3 15s infinite}
 .copy{position:absolute;z-index:25;left:4%;bottom:4%;padding:10px 13px;background:#fffffff0;border-left:4px solid var(--blue);animation:copy 15s infinite}
 .copy b{display:block;font-size:clamp(1.1rem,2.3vw,1.8rem)}
 .copy span{color:var(--muted)}
@@ -146,19 +147,19 @@ header p{margin:0;color:var(--muted);font-size:.8rem}
 <img class="photo p4" src="assets/rgb_658.png"></div>
 <div class="copy"><b>A person captures a few views</b><span>One calibrated camera · sparse RGB observations</span></div>
 <svg class="camera-map" viewBox="0 0 1200 675" aria-label="Three G1 head cameras connected to their corresponding downward ego views">
-  <g class="pair pair-1"><path class="ray" d="M428 261 C610 250 760 175 918 165"/><path class="cone" d="M428 261 L520 283 L483 344 Z"/><circle class="head-ring" cx="428" cy="261" r="15"/><circle class="lens" cx="428" cy="261" r="7"/><circle class="badge" cx="451" cy="244" r="13"/><text x="451" y="244">1</text><text class="camera-label" x="405" y="222">G1 HEAD CAMERA</text></g>
-  <g class="pair pair-2"><path class="ray" d="M560 422 C690 420 805 375 918 365"/><path class="cone" d="M560 422 L650 449 L605 516 Z"/><circle class="head-ring" cx="560" cy="422" r="15"/><circle class="lens" cx="560" cy="422" r="7"/><circle class="badge" cx="583" cy="405" r="13"/><text x="583" y="405">2</text></g>
-  <g class="pair pair-3"><path class="ray" d="M677 452 C760 485 835 545 918 560"/><path class="cone" d="M677 452 L770 493 L712 555 Z"/><circle class="head-ring" cx="677" cy="452" r="15"/><circle class="lens" cx="677" cy="452" r="7"/><circle class="badge" cx="700" cy="435" r="13"/><text x="700" y="435">3</text></g>
+  <g class="pair pair-1"><path class="ray" d="M426 258 C610 250 790 145 960 135"/><path class="cone" d="M426 258 L513 330 L449 369 Z"/><circle class="head-ring" cx="426" cy="258" r="15"/><circle class="lens" cx="426" cy="258" r="7"/><circle class="badge" cx="449" cy="241" r="13"/><text x="449" y="241">1</text><text class="camera-label" x="403" y="219">G1 HEAD CAMERA</text></g>
+  <g class="pair pair-2"><path class="ray" d="M561 426 C690 420 800 355 906 338"/><path class="cone" d="M561 426 L579 530 L505 517 Z"/><circle class="head-ring" cx="561" cy="426" r="15"/><circle class="lens" cx="561" cy="426" r="7"/><circle class="badge" cx="584" cy="409" r="13"/><text x="584" y="409">2</text></g>
+  <g class="pair pair-3"><path class="ray" d="M682 455 C770 475 850 525 957 540"/><path class="cone" d="M682 455 L582 507 L569 433 Z"/><circle class="head-ring" cx="682" cy="455" r="15"/><circle class="lens" cx="682" cy="455" r="7"/><circle class="badge" cx="705" cy="438" r="13"/><text x="705" y="438">3</text></g>
 </svg>
 
-<img class="ego e1" src="assets/ego-g1-seated.png" alt="Downward-looking G1 head-camera view at the seated state">
+<div class="ego-photos"><img class="ego e1" src="assets/ego-g1-seated.png" alt="G1 head-camera view at the seated state">
 
-<img class="ego e2" src="assets/ego-g1-front.png" alt="Downward-looking G1 head-camera view at the front state">
+<img class="ego e2" src="assets/ego-g1-front.png" alt="G1 head-camera view at the front state">
 
-<img class="ego e3" src="assets/ego-g1-center.png" alt="Downward-looking G1 head-camera view at the center state">
-<span class="ego-badge b1">1</span><span class="ego-badge b2">2</span><span class="ego-badge b3">3</span>
+<img class="ego e3" src="assets/ego-g1-center.png" alt="G1 head-camera view at the center state">
+<span class="ego-badge b1">1</span><span class="ego-badge b2">2</span><span class="ego-badge b3">3</span></div>
 <div class="column-label capture-label">HUMAN CAPTURE · RGB</div>
-<div class="column-label ego-label">ROBOT EGO-VIEW · DOWNWARD</div>
+<div class="column-label ego-label">ROBOT EGO-VIEW</div>
 <div class="gap-band" aria-label="Left-to-right broken arrow visualizing the capture-consumption support gap"><b>CAPTURE–CONSUMPTION GAP</b><svg class="gap-curve" viewBox="0 0 700 190" aria-hidden="true"><path class="arc-left" d="M30 120 C135 72 235 72 326 105"/><path class="arc-right" d="M374 105 C470 72 565 72 650 111"/><path class="arc-ghost" d="M32 120 C135 72 235 72 326 105 M374 105 C470 72 565 72 648 111"/><path class="arrow-right" d="M640 91 L682 125 L632 137 Z"/><circle class="gap-ring" cx="350" cy="105" r="31"/><path class="bolt" d="M357 67 L330 107 L348 107 L339 143 L371 96 L353 96 Z"/><text class="capture-end" x="88" y="163">HUMAN CAPTURES</text><text class="ego-end" x="606" y="163">ROBOT EGO VIEWS</text></svg></div>
 </section>
 <div class="controls"><button id="restart">Restart</button><button id="pause">Pause</button><span class="note">Review prototype only · formal Overview remains unchanged</span></div></main><script>const s=document.querySelector('#stage');restart.onclick=()=>{s.style.display='none';s.offsetHeight;s.style.display='block'}
