@@ -11,8 +11,8 @@
   <meta property="og:type" content="website">
   <title>R2S-EGO | Anonymous Project Page</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles-hero-v5.css">
-  <script src="script-seek-v2.js" defer></script>
+  <link rel="stylesheet" href="styles-hero-v5.css?v=6">
+  <script src="script-seek-v2.js?v=3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -69,13 +69,30 @@
       </div>
 
       <figure class="teaser">
-        <video controls playsinline preload="metadata" poster="assets/overview-poster.webp" data-seekable-video>
+        <video controls playsinline preload="metadata" poster="assets/overview-poster.webp" data-seekable-video id="overview-video">
           <source src="videos/r2s-ego-overview-explainer-v3.webm" type="video/webm">
           <source src="videos/r2s-ego-overview-explainer-v3.mp4" type="video/mp4">
           Your browser does not support HTML video.
         </video>
+        <nav class="video-chapters" aria-label="Overview video chapters" data-video-chapters="#overview-video">
+          <div class="chapter-group problem">
+            <span class="chapter-phase">01 · Problem</span>
+            <button type="button" data-seek-time="0">Missing ego-view evidence <span>0:00</span></button>
+          </div>
+          <div class="chapter-group method">
+            <span class="chapter-phase">02 · Method</span>
+            <button type="button" data-seek-time="5">Dual-proxy refinement <span>0:05</span></button>
+            <button type="button" data-seek-time="14">Ego-view policy rollout <span>0:14</span></button>
+          </div>
+          <div class="chapter-group results">
+            <span class="chapter-phase">03 · Results</span>
+            <button type="button" data-seek-time="33">Real-robot trials <span>0:33</span></button>
+            <button type="button" data-seek-time="45">Visual comparison <span>0:45</span></button>
+            <button type="button" data-seek-time="56">Input efficiency <span>0:56</span></button>
+          </div>
+        </nav>
         <figcaption>
-          <strong>Overview video.</strong> Camera frustums introduce the aligned ego views before the policy rollout; Trials A–D share a common policy.
+          <strong>Overview video.</strong> Sparse captures leave missing evidence at robot-visited views; R2S-EGO targets those views with dual proxies, then evaluates visual refinement and real-robot policy rollouts. Trials A–D share a common policy.
         </figcaption>
       </figure>
     </section>

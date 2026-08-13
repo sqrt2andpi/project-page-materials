@@ -43,6 +43,22 @@
   };
 
   enableAnonymousVideoFallback();
+
+  document.querySelectorAll('[data-video-chapters]').forEach((chapters) => {
+    const video = document.querySelector(chapters.dataset.videoChapters);
+    if (!video) return;
+    chapters.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-seek-time]');
+      if (!button) return;
+      const seek = () => {
+        video.currentTime = Number(button.dataset.seekTime);
+        video.play().catch(() => {});
+      };
+      if (video.readyState >= HTMLMediaElement.HAVE_METADATA) seek();
+      else video.addEventListener('loadedmetadata', seek, { once: true });
+    });
+  });
+
   if ('IntersectionObserver' in window) {
     const videoObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
