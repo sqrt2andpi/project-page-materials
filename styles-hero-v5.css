@@ -406,6 +406,15 @@ tbody tr + tr { border-top: 1px solid var(--line); }
 .appearance-contexts button.is-active { color: #fff; background: var(--teal-dark); border-color: var(--teal-dark); }
 .appearance-sweep { flex: 0 0 auto; color: var(--teal-dark); }
 .appearance-figure figcaption { margin-top: 12px; color: var(--muted); font-size: .84rem; line-height: 1.55; }
+.simulation-training-figure { margin: 26px 0 0; }
+.simulation-training-figure video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #101718;
+  border: 1px solid var(--line);
+}
+.simulation-training-figure figcaption { margin-top: 10px; color: var(--muted); font-size: .84rem; line-height: 1.55; }
 
 .site-footer { padding: 28px 0; border-top: 1px solid var(--line); }
 .site-footer .page-width {

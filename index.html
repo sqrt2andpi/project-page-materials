@@ -11,7 +11,7 @@
   <meta property="og:type" content="website">
   <title>R2S-EGO | Anonymous Project Page</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles-hero-v5.css?v=12">
+  <link rel="stylesheet" href="styles-hero-v5.css?v=13">
   <script src="script-seek-v2.js?v=8" defer></script>
 </head>
 <body>
@@ -252,6 +252,20 @@
           </div>
           <button class="appearance-sweep" type="button" data-sweep>Play sweep</button>
         </div>
+      </figure>
+    </section>
+
+    <section class="paper-section page-width simulation-training" id="simulation-training" aria-labelledby="simulation-training-title">
+      <h2 id="simulation-training-title">Simulation Training</h2>
+      <figure class="simulation-training-figure">
+        <video muted loop autoplay playsinline preload="metadata"
+               poster="assets/simulation-training-multi-g1-poster.webp"
+               data-autoplay-video aria-label="Parallel Unitree G1 sitting rollouts in simulation">
+          <source src="videos/simulation-training-multi-g1.webm" type="video/webm">
+          <source src="videos/simulation-training-multi-g1.mp4" type="video/mp4">
+          Your browser does not support HTML video.
+        </video>
+        <figcaption><strong>Parallel simulation rollouts.</strong> Unitree G1 policies train across multiple sitting states around the target chair.</figcaption>
       </figure>
     </section>
 
